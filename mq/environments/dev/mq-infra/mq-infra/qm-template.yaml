@@ -42,7 +42,7 @@ spec:
         memory: 1Gi
     
     availability:
-      type: SingleInstance
+      hatype: NativeHA
     
     image: "image-registry.openshift-image-registry.svc:5000/ci/mq-infra:0.0.3"
     imagePullPolicy: Always
