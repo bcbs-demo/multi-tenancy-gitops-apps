@@ -54,9 +54,9 @@ spec:
     
     storage:
       persistedData:
-        enabled: false
+        enabled: true
       queueManager:
-        type: ephemeral
+        type: managed-nfs-storage
       recoveryLogs:
         enabled: false
     
