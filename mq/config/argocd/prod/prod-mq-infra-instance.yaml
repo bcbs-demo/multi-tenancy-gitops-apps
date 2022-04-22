@@ -13,6 +13,6 @@ spec:
   project: applications
   source:
     path: mq/environments/prod/mq-infra/
-    repoURL: github.com/bcbs-demo/multi-tenancy-gitops-apps.git
+    repoURL: https://github.com/bcbs-demo/multi-tenancy-gitops-apps.git
     targetRevision: master
   syncPolicy: {}
