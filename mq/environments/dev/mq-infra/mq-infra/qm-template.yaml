@@ -54,9 +54,10 @@ spec:
     
     storage:
       persistedData:
-        enabled: true
+        enabled: false
       queueManager:
-        type: managed-nfs-storage
+        size: 2Gi
+        type: persistent-claim
       recoveryLogs:
         enabled: false
     
