@@ -42,9 +42,9 @@ spec:
         memory: 1Gi
     
     availability:
-      type: NativeHA
+      type: SingleInstance
     
-    image: "image-registry.openshift-image-registry.svc:5000/ci/mq-infra:0.0.3"
+    image: "image-registry.openshift-image-registry.svc:5000/ci/mq-infra:0.0.4"
     imagePullPolicy: Always
     mqsc:
     - configMap:
@@ -56,8 +56,7 @@ spec:
       persistedData:
         enabled: false
       queueManager:
-        size: 2Gi
-        type: persistent-claim
+        type: ephemeral
       recoveryLogs:
         enabled: false
     
@@ -79,17 +78,3 @@ spec:
   version: 9.2.3.0-r1
   web:
     enabled: true
-  pki:
-      keys:
-        - name: certificate
-          secret:
-            items:
-              - tls.key
-              - tls.crt
-            secretName: mq-server-cert
-      trust:
-        - name: ca
-          secret:
-            items:
-              - ca.crt
-            secretName: mq-server-cert
