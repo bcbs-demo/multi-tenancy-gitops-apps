@@ -13,7 +13,7 @@ metadata:
 spec:
   to:
     kind: Service
-    name: el-cnkt-event-listener
+    name: el-cntk-event-listener
     weight: 100
   port:
     targetPort: http-listener
