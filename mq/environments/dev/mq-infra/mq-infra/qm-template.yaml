@@ -43,8 +43,11 @@ spec:
     
     availability:
       type: NativeHA
+      # tls:
+      #   secretName: mq-server-cert
+      #   cipherSpec: ANY_TLS12_OR_HIGHER
     
-    image: "image-registry.openshift-image-registry.svc:5000/ci/mq-infra:0.0.3"
+    image: "image-registry.openshift-image-registry.svc:5000/ci/mq-infra:0.0.5"
     imagePullPolicy: Always
     mqsc:
     - configMap:
@@ -53,16 +56,15 @@ spec:
         - config.mqsc
     
     storage:
-      persistedData:
-        enabled: false
+      defaultClass: managed-nfs-storage
       queueManager:
         size: 2Gi
         type: persistent-claim
-      recoveryLogs:
-        enabled: false
     
   securityContext:
     initVolumeAsRoot: false
+    supplementalGroups:
+      - 99
   template:
     pod:
       containers:
@@ -79,17 +81,3 @@ spec:
   version: 9.2.3.0-r1
   web:
     enabled: true
-  pki:
-      keys:
-        - name: certificate
-          secret:
-            items:
-              - tls.key
-              - tls.crt
-            secretName: mq-server-cert
-      trust:
-        - name: ca
-          secret:
-            items:
-              - ca.crt
-            secretName: mq-server-cert
