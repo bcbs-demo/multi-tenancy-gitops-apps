@@ -25,7 +25,7 @@ spec:
       default: "false"
     - name: ha
       description: Enable ha for queueManager
-      default: "false"
+      default: "true"
     - name: git-pr
       description: Enable the pipeline to do a PR for the gitops repo
       default: "false"
