@@ -42,9 +42,12 @@ spec:
         memory: 1Gi
     
     availability:
-      type: SingleInstance
+      type: NativeHA
+      # tls:
+      #   secretName: mq-server-cert
+      #   cipherSpec: ANY_TLS12_OR_HIGHER
     
-    image: "image-registry.openshift-image-registry.svc:5000/ci/mq-infra:0.0.8"
+    image: "image-registry.openshift-image-registry.svc:5000/ci/mq-infra:0.0.9"
     imagePullPolicy: Always
     mqsc:
     - configMap:
@@ -53,12 +56,10 @@ spec:
         - config.mqsc
     
     storage:
-      persistedData:
-        enabled: false
+      defaultClass: managed-nfs-storage
       queueManager:
-        type: ephemeral
-      recoveryLogs:
-        enabled: false
+        size: 2Gi
+        type: persistent-claim
     
   securityContext:
     initVolumeAsRoot: false
